@@ -42,5 +42,37 @@
         border-bottom: 2px solid black;
         margin-bottom: 20px;
     }
+    a.dropdown-item.single-item {
+        
+    }
+    .minicart-left {
+    height: 50px;
+    float: left;
+    }
+    .minicart-right {
+    display: flex;
+    flex-direction: column;
+    }
+    img.minicart-image {
+    width: auto;
+    height: 100%;
+    }
+    .dropdown { 
+            position: static !important; 
+    } 
+    @media only screen and (max-width:768px){
+        .dropdown-menu {
+        width: 100% !important;
+    } 
+    }
+    .dropdown-menu { 
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15)!important; 
+        margin-top: 0px !important; 
+        width: 30%;
+        left: 70%;
+    } 
+    .dropdown-item:not(:first-child) {
+    border-top: 2px solid black;
+    }
 </style>
 </html>

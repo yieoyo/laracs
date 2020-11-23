@@ -41,6 +41,26 @@ class ProductController extends Controller
         return Cart::where('user_id', $userId)->count();
 
     }
+    static function cartAllItems(){
+        $userId = Session::get('user')['id'];
+        $allItems = DB::table('cart')
+        ->join('products', 'cart.product_id', '=','products.id')
+        ->where('cart.user_id', $userId)
+        ->select('products.*','cart.id as cart_id')
+        ->get();
+        return $allItems;
+
+    }
+    static function cartTotal(){
+        $userId = Session::get('user')['id'];
+        $carttotal = DB::table('cart')
+        ->join('products', 'cart.product_id', '=','products.id')
+        ->where('cart.user_id', $userId)
+        ->select('products.*','cart.id as cart_id')
+        ->sum('products.price');
+        return $carttotal;
+
+    }
     function cartList() {
         $userId = Session::get('user')['id'];
         $products = DB::table('cart')

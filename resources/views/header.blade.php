@@ -3,6 +3,8 @@ use App\Http\Controllers\ProductController;
 $total = 0;
 if(Session::has('user')){
   $total = ProductController::cartItem();
+  $cartTotal = ProductController::cartTotal();
+  $allItems = ProductController::cartAllItems();
 }
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -27,8 +29,28 @@ if(Session::has('user')){
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
     <ul class="navbar-nav navbar-right">
-      <li class="nav-item active">
-        <a class="nav-link" href="/cartlist">Cart({{$total}})</a>
+      <li class="nav-item active"><div class="dropdown">
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+  Cart({{$total}})
+  </button>
+  <div class="dropdown-menu">
+  @if(Session::has('user'))
+  @foreach($allItems as $singleItem)
+    <a class="dropdown-item single-item" href="/detail/{{$singleItem->id}}">
+      <div class="minicart-left">
+        <img class="minicart-image" src="{{$singleItem->gallery}}" alt="{{$singleItem->name}}">
+      </div>
+      <div class="minicart-right">
+        <span>{{$singleItem->name}}</span>
+        <span>${{$singleItem->price}}</span>
+      </div>
+    </a>
+  @endforeach
+  @endif
+    <a class="dropdown-item" href="/cartlist"><button class="btn btn-info mt-2"> View Cart (${{$cartTotal}})</button></a>
+  </div>
+</div>
+        
       </li>
       @if(Session::has('user'))
       <li><div class="dropdown">
