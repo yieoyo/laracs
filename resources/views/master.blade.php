@@ -21,5 +21,26 @@
     .custom-login {
         height: 500px;
     }
+    .carousel-caption {
+        color: #ffffff;
+        background: #000000;
+    }
+    .trending-image {
+        height: 100px;
+    }
+    .trending-item{
+        float: left;
+        width: 20%;
+    }
+    .trending-wrapper {
+        margin: 30px;
+    }
+    .footer {
+        clear:both;
+    }
+    .cart-list-divider {
+        border-bottom: 2px solid black;
+        margin-bottom: 20px;
+    }
 </style>
 </html>
